@@ -1,0 +1,11 @@
+<template name="sidebar">
+	{{ #if threads }}
+		{{ #each threads }}
+			{{ > thread name=name }}
+		{{ /each }}
+	{{ else }}
+		<h3>You have no threads</h3>
+	{{ /if }}
+
+	{{ > userList }}
+</template>

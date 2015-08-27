@@ -1,13 +1,13 @@
 // Clean out the threads:
-Threads.remove( {} );
+// Threads.remove( {} );
 
-// Add some dummy data:
-Threads.insert( {
-	name: "Robert",
-});
-Threads.insert( {
-	name: "Piotr",
-});
-Threads.insert( {
-	name: "Chris",
-});
+// // Add some dummy data:
+// Threads.insert( {
+// 	name: "Robert",
+// });
+// Threads.insert( {
+// 	name: "Piotr",
+// });
+// Threads.insert( {
+// 	name: "Chris",
+// });

@@ -1,13 +1,14 @@
 <template name="sidebar">
-	{{ #if threads }}
+	<h2>Messages:</h2>
+	{{ #if threadCount }}
 		{{ #each threads }}
-			{{ > thread name=name }}
+			{{ >thread }}
 		{{ /each }}
 	{{ else }}
-		<h3>You have no threads</h3>
+		<h3>You have no messages</h3>
 	{{ /if }}
 
-	{{ #if users }}
+	{{ #if usersCount }}
 		<h2>Users:</h2>
 		{{ #each users }}
 			{{ >user }}

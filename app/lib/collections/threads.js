@@ -1,1 +1,1 @@
-Threads = new Mongo.Collection( 'channels' );
+Threads = new Mongo.Collection( 'threads' );

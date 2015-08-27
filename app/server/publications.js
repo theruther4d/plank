@@ -2,8 +2,6 @@ Meteor.publish( 'threads', function() {
 	return Threads.find();
 });
 
-Meteor.publish( 'userList', function() {
-	return Meteor.users.find( {
-		fields: 'username'
-	});
+Meteor.publish( 'users', function() {
+	return Meteor.users.find( {}, { username: true } );
 });

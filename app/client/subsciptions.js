@@ -1,3 +1,3 @@
 Meteor.subscribe( 'threads' );
 
-Meteor.subscribe( 'userList' );
+Meteor.subscribe( 'users' );

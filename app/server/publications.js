@@ -3,5 +3,7 @@ Meteor.publish( 'threads', function() {
 });
 
 Meteor.publish( 'users', function() {
-	return Meteor.users.find( {}, { username: true } );
+	return Meteor.users.find( {}, { fields: {
+		"username": true
+	}});
 });

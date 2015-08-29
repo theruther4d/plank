@@ -5,6 +5,11 @@ Meteor.publish( 'threads', function() {
 Meteor.publish( 'users', function() {
 	return Meteor.users.find( {}, { fields: {
 		"username": true,
-		"_id": true
+		"_id": true,
+		'currentThread': true
 	}});
+});
+
+Meteor.publish( 'messages', function() {
+	return Messages.find( { $or: [ { author: this.userId }, { recipient: this.userId } ] } );
 });

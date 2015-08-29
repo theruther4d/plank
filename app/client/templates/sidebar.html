@@ -1,19 +1,23 @@
 <template name="sidebar">
-	<h2>Messages:</h2>
-	{{ #if threadCount }}
-		{{ #each threads }}
-			{{ >thread recipientUserName=recipientUserName }}
-		{{ /each }}
-	{{ else }}
-		<h3>You have no messages</h3>
-	{{ /if }}
+	<aside class="sidebar">
+		{{> loginButtons }}
 
-	{{ #if usersCount }}
-		<h2>Users:</h2>
-		{{ #each users }}
-			{{ >user }}
-		{{ /each }}
-	{{ else }}
-		<h2>There are no users</h2>
-	{{ /if }}
+		<h2>Direct Messages:</h2>
+		{{ #if threadCount }}
+			{{ #each threads }}
+				{{ >thread recipientUserName=recipientUserName id=_id }}
+			{{ /each }}
+		{{ else }}
+			<h3>You have no messages</h3>
+		{{ /if }}
+
+		<!-- {{ #if usersCount }}
+			<h2>Users:</h2>
+			{{ #each users }}
+				{{ >user }}
+			{{ /each }}
+		{{ else }}
+			<h2>There are no users</h2>
+		{{ /if }} -->
+	</aside>
 </template>

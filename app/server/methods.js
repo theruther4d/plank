@@ -1,5 +1,6 @@
 Meteor.methods({
-	newThread: function( users ) {
-		Threads.insert( users );
+	newThread: function( newThreads ) {
+		Threads.insert( newThreads[0] );
+		Threads.insert( newThreads[1] );
 	}
 });

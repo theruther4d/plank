@@ -2,7 +2,7 @@
 	<h2>Messages:</h2>
 	{{ #if threadCount }}
 		{{ #each threads }}
-			{{ >thread threadId=_id }}
+			{{ >thread recipientUserName=recipientUserName }}
 		{{ /each }}
 	{{ else }}
 		<h3>You have no messages</h3>

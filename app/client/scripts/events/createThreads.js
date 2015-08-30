@@ -1,14 +1,26 @@
 Template.sidebar.events({
 	'click .username': function( e ) {
 		e.preventDefault();
+
 		var user1Id 	= Meteor.userId(),
 			user1Name	= Meteor.user().username,
 			user2Id 	= this._id,
 			user2Name	= this.username,
-			jointId		= user1Id.concat( '---', user2Id );
+			userIds		= [
+				user1Id,
+				user2Id
+			];
+
+		// Sort the array for consistent results:
+		userIds.sort();
+		var jointId		= userIds.join( '---' );
 
 		// If there's already a thread, do nothing:
 		if( Threads.find( { jointId: jointId } ).count() ) {
+
+			Meteor.users.update( Meteor.userId(), {
+				$set: { 'currentThread': jointId }
+			});
 			return;
 		};
 
@@ -28,7 +40,10 @@ Template.sidebar.events({
 		];
 
 		Meteor.call( 'newThread', newThreads, function(err, res) {
-			console.log( res );
+
+			Meteor.users.update( Meteor.userId(), {
+				$set: { 'currentThread': jointId }
+			});
 		});
 	}
 });

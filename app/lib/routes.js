@@ -10,6 +10,13 @@ Router.route( '/', function () {
 	}
 });
 
-Router.route( '/messages/:_message', function(){
-	this.render( 'messages' );
+Router.route( '/messages/:_userId', function(){
+	this.render( 'messages', {
+		waitOn: function() {
+			Meteor.subscribe( 'messages' );
+		},
+		data: function() {
+			return Messages.find( { _id: this.params._userId } );
+		}
+	});
 }, { name: 'messages' } );

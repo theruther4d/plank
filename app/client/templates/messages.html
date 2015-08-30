@@ -1,6 +1,10 @@
 <template name="messages">
 	<section id="messages" class="messages">
-		<h1>Messages go here</h1>
-		<!-- render messages from specific thread -->
+		<h1>Messages go here ({{ messageCount }})</h1>
+		{{ #if messageCount }}
+			{{ #each messages }}
+				{{ >message }}
+			{{ /each }}
+		{{ /if }}
 	</section>
 </template>

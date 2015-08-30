@@ -13,6 +13,12 @@ Template.sidebar.helpers( {
 	}
 });
 
+Template.thread.helpers({
+	isSelectedThread: function( threadJointId ) {
+		return Meteor.user().currentThread == threadJointId ? 'selected' : '';
+	}
+});
+
 Template.messages.helpers( {
 	messageCount: function() {
 		return Messages.find().count();

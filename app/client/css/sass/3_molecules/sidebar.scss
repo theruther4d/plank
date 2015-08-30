@@ -3,3 +3,10 @@
 	float: left;
 	border: 1px solid red;
 }
+
+/*h4*/.thread {
+	&.selected {
+		background: red;
+		color: white;
+	}
+}

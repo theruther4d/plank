@@ -22,6 +22,12 @@ Template.messages.helpers( {
 	}
 });
 
+Template.header.helpers({
+	threadRecipient: function() {
+		return Threads.findOne( { jointId: Meteor.user().currentThread } ).recipientUserName;
+	}
+})
+
 Template.registerHelper( 'getUsernameFromId', function( userId ) {
 	return Meteor.users.findOne( { _id: userId } ).username;
 });

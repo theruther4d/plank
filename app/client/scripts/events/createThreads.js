@@ -1,6 +1,5 @@
 Template.sidebar.events({
 	'click .username': function( e ) {
-		e.preventDefault();
 
 		var user1Id 	= Meteor.userId(),
 			user1Name	= Meteor.user().username,
@@ -24,6 +23,7 @@ Template.sidebar.events({
 			return;
 		};
 
+		// Create the new threads:
 		var newThreads = [
 			{
 				jointId: jointId,
@@ -39,6 +39,7 @@ Template.sidebar.events({
 			}
 		];
 
+		// Insert the threads:
 		Meteor.call( 'newThread', newThreads, function(err, res) {
 
 			Meteor.users.update( Meteor.userId(), {

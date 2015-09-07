@@ -9,3 +9,4 @@ fourseven:scss
 accounts-ui
 accounts-password
 iron:router
+dpid:user-presence

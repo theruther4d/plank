@@ -13,3 +13,10 @@ Meteor.publish( 'users', function() {
 Meteor.publish( 'messages', function() {
 	return Messages.find( { $or: [ { author: this.userId }, { recipient: this.userId } ] } );
 });
+
+Meteor.publish( 'userPresence', function() {
+	// var filter = { state: online };
+
+	// return UserPresences.find( filter );
+	return UserPresences.find();
+});

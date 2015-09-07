@@ -4,9 +4,21 @@
 	border: 1px solid red;
 }
 
-/*h4*/.thread {
+/*h4 a*/.thread {
+	position: relative;
+
 	&.selected {
 		background: red;
 		color: white;
+	}
+
+	&.state--online:before {
+		content: '';
+		display: inline-block;
+		width: 6px;
+		height: 6px;
+		background: green;
+		border-radius: 50%;
+		margin-right: 10px;
 	}
 }

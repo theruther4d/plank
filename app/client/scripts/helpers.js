@@ -16,6 +16,15 @@ Template.sidebar.helpers( {
 Template.thread.helpers({
 	isSelectedThread: function( threadJointId ) {
 		return Meteor.user().currentThread == threadJointId ? 'selected' : '';
+	},
+	isOnline: function( threadId ) {
+
+		var otherUserId = Threads.findOne( { _id: threadId } ).recipient,
+			userStatus	= UserPresences.findOne( { userId: otherUserId } );
+
+		if( userStatus !== undefined ) {
+			return 'state--' + userStatus.state;
+		}
 	}
 });
 

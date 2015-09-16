@@ -1,0 +1,23 @@
+/*ul*/.tab-controls {
+	width: 100%;
+	border: 1px solid blue;
+	display: flex;
+}
+
+/*li*/.tab-control {
+	flex: 1;
+	border: 1px solid green;
+}
+
+/*ul*/.tab-list {
+	width: 100%;
+	border: 1px solid red;
+}
+
+/*li*/.tab {
+	display: none;
+
+	&.tab--visible {
+		display: block;
+	}
+}

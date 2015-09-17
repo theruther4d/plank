@@ -15,7 +15,11 @@ Template.sidebar.helpers( {
 
 Template.thread.helpers({
 	isSelectedThread: function( threadJointId ) {
-		return Meteor.user().currentThread == threadJointId ? 'selected' : '';
+		if( Meteor.currentUser ) {
+			return Meteor.user().currentThread == threadJointId ? 'selected' : '';
+		} else {
+			return '';
+		}
 	},
 	isOnline: function( threadId ) {
 
@@ -28,7 +32,7 @@ Template.thread.helpers({
 	}
 });
 
-Template.messages.helpers( {
+Template.messages.helpers({
 	messageCount: function() {
 		return Messages.find().count();
 	},
@@ -45,4 +49,24 @@ Template.header.helpers({
 
 Template.registerHelper( 'getUsernameFromId', function( userId ) {
 	return Meteor.users.findOne( { _id: userId } ).username;
+});
+
+Template.login.helpers({
+	hasError: function() {
+		return Session.get( 'loginError' ) !== null;
+	},
+	errorMessage: function() {
+		console.log( Session.get( 'registerError' ) );
+		return Session.get( 'loginError' );
+	}
+});
+
+Template.register.helpers({
+	hasError: function() {
+		return Session.get( 'registerError' ) !== null;
+	},
+	errorMessage: function() {
+		console.log( Session.get( 'registerError' ) );
+		return Session.get( 'registerError' );
+	}
 });

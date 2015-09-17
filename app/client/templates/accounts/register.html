@@ -16,4 +16,8 @@
 			<input type="submit" value="Sign Up">
 		</div>
 	</form>
+	
+	{{ #if hasError }}
+		<h3>{{ errorMessage }}</h3>
+	{{ /if }}
 </template>

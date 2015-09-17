@@ -31,6 +31,8 @@ Template.register.events({
 			username: username,
 			email: email,
 			password: password,
+		}, function( err ) {
+			Session.set( 'registerError', err.reason );
 		});
 	}
 });
@@ -42,6 +44,8 @@ Template.login.events({
 		var identifier	= $( '#identifier' ).val(),
 			password	= $( '#login-password').val();
 			
-		Meteor.loginWithPassword( identifier, password );
+		Meteor.loginWithPassword( identifier, password, function( err ) {
+			Session.set( 'loginError', err.reason );
+		});
 	}
 });

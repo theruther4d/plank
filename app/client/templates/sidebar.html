@@ -14,7 +14,7 @@
 		{{ #if usersCount }}
 			<h2>Users:</h2>
 			{{ #each users }}
-				{{ >user }}
+				{{ >user username=username }}
 			{{ /each }}
 		{{ else }}
 			<h2>There are no users</h2>

@@ -25,13 +25,17 @@ Router.route( '/', {
 	}
 });
 
-Router.route( '/messages/:_userId', function(){
+Router.route( '/messages/:_username', function(){
 	this.render( 'messages', {
 		waitOn: function() {
 			Meteor.subscribe( 'messages' );
 		},
 		data: function() {
-			return Messages.find( { _id: this.params._userId } );
+			var formattedUsername	= this.params._username.replace( '@', '' );
+
+			// TODO:
+			// Get the currentthread based on current user and @username, return messages
+			// from currentThread
 		}
 	});
 }, { name: 'messages' } );

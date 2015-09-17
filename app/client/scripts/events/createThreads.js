@@ -10,6 +10,7 @@ Template.sidebar.events({
 				user2Id
 			];
 
+
 		// Sort the array for consistent results:
 		userIds.sort();
 		var jointId		= userIds.join( '---' );
@@ -18,7 +19,7 @@ Template.sidebar.events({
 		if( Threads.find( { jointId: jointId } ).count() ) {
 
 			Meteor.users.update( Meteor.userId(), {
-				$set: { 'currentThread': jointId }
+				$set: { 'currentThread': '@' + user2Name }
 			});
 			return;
 		};

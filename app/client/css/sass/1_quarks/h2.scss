@@ -1,0 +1,9 @@
+%h2 {
+	color: #383F45;
+	text-transform: uppercase;
+	font-size: 1.2rem;
+}
+
+h2 {
+	@extend %h2;
+}

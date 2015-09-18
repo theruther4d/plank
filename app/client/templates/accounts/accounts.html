@@ -1,6 +1,9 @@
 <template name="accounts">
 	{{ #if currentUser }}
-		<a href="#" class="log-out">Log out</a>
+
+		<a href="#" class="log-out" title='Log out'>
+			<h4>{{ currentUser.username }}</h4>
+		</a>
 	{{ else }}
 		<ul class="tab-controls">
 			<li class="tab-control tab--visible">

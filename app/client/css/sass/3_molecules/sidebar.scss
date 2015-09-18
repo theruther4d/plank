@@ -1,7 +1,7 @@
 /*aside*/.sidebar {
 	width: 25%;
 	float: left;
-	border: 1px solid red;
+	background: #F8F8FA;
 }
 
 /*h4 a*/.thread {
@@ -12,13 +12,23 @@
 		color: white;
 	}
 
-	&.state--online:before {
+	&:before {
 		content: '';
 		display: inline-block;
-		width: 6px;
-		height: 6px;
-		background: green;
+		width: 9px;
+		height: 9px;
+		background: transparent;
 		border-radius: 50%;
 		margin-right: 10px;
+		color: #383F45;
+		opacity: 0.3;
+		border: 2px solid;
+		transition: color 0.25s ease, background-color 0.25s ease, opacity 0.25s ease;
+	}
+
+	&.state--online:before {
+		opacity: 1;
+		color: #93cc93;
+		background: #93cc93;
 	}
 }

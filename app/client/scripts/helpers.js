@@ -14,9 +14,23 @@ Template.sidebar.helpers( {
 });
 
 Template.thread.helpers({
-	isSelectedThread: function( threadJointId ) {
-		if( Meteor.currentUser ) {
-			return Meteor.user().currentThread == threadJointId ? 'selected' : '';
+	isSelectedThread: function( username ) {		
+
+		if( Meteor.userId() ) {
+			var currentThread = Meteor.user().currentThread;
+
+			if( currentThread ) {
+				var threadUser	= Threads.findOne( { jointId: currentThread } ).recipientUserName;
+
+				if( threadUser == username ) {
+					return "selected";
+				} else {
+					return "";
+				}
+			}
+
+			return "";
+			
 		} else {
 			return '';
 		}

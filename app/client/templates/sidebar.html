@@ -1,15 +1,16 @@
 <template name="sidebar">
 	<aside class="sidebar">
 		{{> accounts }}
-
-		<h2>Direct Messages:</h2>
-		{{ #if threadCount }}
-			{{ #each threads }}
-				{{ >thread recipientUserName=recipientUserName id=_id jointId=jointId }}
-			{{ /each }}
-		{{ else }}
-			<h3>You have no messages</h3>
-		{{ /if }}
+		<div class="threads">
+			<h2 class="threads__title">Direct Messages:</h2>
+			{{ #if threadCount }}
+				{{ #each threads }}
+					{{ >thread recipientUserName=recipientUserName id=_id jointId=jointId }}
+				{{ /each }}
+			{{ else }}
+				<h3>You have no messages</h3>
+			{{ /if }}
+		</div>
 
 		{{ #if usersCount }}
 			<h2>Users:</h2>

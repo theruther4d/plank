@@ -1,5 +1,5 @@
 Meteor.publish( 'threads', function() {
-	return Threads.find( { userId: this.userId });
+	return Threads.find( { userId: this.userId, hidden: { $ne: true } } );
 });
 
 Meteor.publish( 'users', function() {

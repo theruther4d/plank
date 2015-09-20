@@ -6,13 +6,8 @@ setCurrThread = function( username) {
 			currUserIndex	= newCurrList.indexOf( formattedName );
 
 		if( currUserIndex > -1 ) {
-			console.log( 'starting with: ', newCurrList );
-			console.log( 'index: ', currUserIndex );
-
 			newCurrList.splice( currUserIndex, 1 );
-			console.log( 'after removing user: ', newCurrList );
 			newCurrList.push( formattedName );
-			console.log( 'after adding user to end: ', newCurrList );
 
 			Meteor.users.update( Meteor.userId(), {
 				$set: { 'currentThread': newCurrList }
@@ -27,8 +22,6 @@ setCurrThread = function( username) {
 			$set: { 'currentThread': [ formattedName ] }
 		});
 	}
-
-	console.log( Meteor.user().currentThread );
 }
 
 Template.sidebar.events({
@@ -71,12 +64,7 @@ Template.sidebar.events({
 
 		// Insert the threads:
 		Meteor.call( 'newThread', newThreads, function(err, res) {
-
 			setCurrThread( user2Name );
-
-			// Meteor.users.update( Meteor.userId(), {
-			// 	$set: { 'currentThread': jointId }
-			// });
 		});
 	}
 });

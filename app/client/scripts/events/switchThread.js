@@ -1,7 +1,5 @@
 Template.thread.events({
 	'click .thread': function() {
-		Meteor.users.update( Meteor.userId(), {
-			$set: { 'currentThread': this.jointId }
-		});
+		setCurrThread( this.recipientUserName );
 	}
 })

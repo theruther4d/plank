@@ -1,3 +1,36 @@
+setCurrThread = function( username) {
+	var formattedName	= '@' + username;
+
+	if( Meteor.user().currentThread ) {
+		var	newCurrList		= Meteor.user().currentThread,
+			currUserIndex	= newCurrList.indexOf( formattedName );
+
+		if( currUserIndex > -1 ) {
+			console.log( 'starting with: ', newCurrList );
+			console.log( 'index: ', currUserIndex );
+
+			newCurrList.splice( currUserIndex, 1 );
+			console.log( 'after removing user: ', newCurrList );
+			newCurrList.push( formattedName );
+			console.log( 'after adding user to end: ', newCurrList );
+
+			Meteor.users.update( Meteor.userId(), {
+				$set: { 'currentThread': newCurrList }
+			});
+		} else {
+			Meteor.users.update( Meteor.userId(), {
+				$push: { 'currentThread': formattedName }
+			});
+		}
+	} else {
+		Meteor.users.update( Meteor.userId(), {
+			$set: { 'currentThread': [ formattedName ] }
+		});
+	}
+
+	console.log( Meteor.user().currentThread );
+}
+
 Template.sidebar.events({
 	'click .username': function( e ) {
 
@@ -10,19 +43,15 @@ Template.sidebar.events({
 				user2Id
 			];
 
-
 		// Sort the array for consistent results:
 		userIds.sort();
 		var jointId		= userIds.join( '---' );
 
 		// If there's already a thread, do nothing:
 		if( Threads.find( { jointId: jointId } ).count() ) {
-
-			Meteor.users.update( Meteor.userId(), {
-				$set: { 'currentThread': '@' + user2Name }
-			});
+			setCurrThread( user2Name );
 			return;
-		};
+		}
 
 		// Create the new threads:
 		var newThreads = [
@@ -43,9 +72,11 @@ Template.sidebar.events({
 		// Insert the threads:
 		Meteor.call( 'newThread', newThreads, function(err, res) {
 
-			Meteor.users.update( Meteor.userId(), {
-				$set: { 'currentThread': jointId }
-			});
+			setCurrThread( user2Name );
+
+			// Meteor.users.update( Meteor.userId(), {
+			// 	$set: { 'currentThread': jointId }
+			// });
 		});
 	}
 });

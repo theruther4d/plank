@@ -18,15 +18,8 @@ Template.thread.helpers({
 
 		if( Meteor.userId() ) {
 			var currentThread = Meteor.user().currentThread;
-
-			if( currentThread ) {
-				var threadUser	= Threads.findOne( { jointId: currentThread } ).recipientUserName;
-
-				if( threadUser == username ) {
-					return "selected";
-				} else {
-					return "";
-				}
+			if( currentThread && ( "@" + currentThread ) == username ) {
+				return "selected";
 			}
 
 			return "";
@@ -70,7 +63,6 @@ Template.login.helpers({
 		return Session.get( 'loginError' ) !== null;
 	},
 	errorMessage: function() {
-		console.log( Session.get( 'registerError' ) );
 		return Session.get( 'loginError' );
 	}
 });
@@ -80,7 +72,6 @@ Template.register.helpers({
 		return Session.get( 'registerError' ) !== null;
 	},
 	errorMessage: function() {
-		console.log( Session.get( 'registerError' ) );
 		return Session.get( 'registerError' );
 	}
 });

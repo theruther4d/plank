@@ -8,14 +8,14 @@
 					{{ >thread recipientUserName=recipientUserName id=_id jointId=jointId }}
 				{{ /each }}
 			{{ else }}
-				<h3>You have no messages</h3>
+				<a href="#" class="new--thread">Send a direct message</a>
 			{{ /if }}
 		</div>
 
 		{{ #if usersCount }}
 			<h2>Users:</h2>
 			{{ #each users }}
-				{{ >user username=username }}
+				{{ >user username=username _id=_id }}
 			{{ /each }}
 		{{ else }}
 			<h2>There are no users</h2>

@@ -1,10 +1,7 @@
 <template name="main">
-	<head>
-		<title>plank</title>
-	</head>
-
-	<body>
-		{{> sidebar }}
+	{{ #if currentUser }}
+		{{ > messages }}
+	{{ else }}
 		{{> yield }}
-	</body>
+	{{ /if }}
 </template>

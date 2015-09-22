@@ -30,9 +30,25 @@ Template.register.events({
 		Accounts.createUser({
 			username: username,
 			email: email,
-			password: password,
+			password: password
 		}, function( err ) {
 			Session.set( 'registerError', err.reason );
+
+			// Make avatar:
+			$.ajax({
+				type: 'GET',
+				url: 'http://uifaces.com/api/v1/random'
+			})
+			.done( function( res ) {
+				var avatar = res.image_urls.mini;
+
+				Meteor.users.update( { username: username }, { $set: { avatar: avatar } }, function( err ) {
+					console.log( err );
+				});
+			})
+			.fail( function( err ) {
+				console.log( err );
+			});
 		});
 	}
 });

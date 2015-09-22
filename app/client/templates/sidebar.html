@@ -9,16 +9,22 @@
 				{{ /each }}
 			{{ else }}
 				<a href="#" class="new--thread">Send a direct message</a>
-			{{ /if }}
+			{{ /if }}					
+			<div class="user-search">
+				<form class="user-search-form">
+					<label for="user-search-field label--hidden">Find by name</label>
+					<input type="text" name="user-search-field" id="user-search-field" placeholder="Find by name">
+				</form>
+				<ul class="user-list">
+				{{ #if usersCount }}
+					{{ #each users }}
+						{{ >user }}
+					{{ /each }}
+				{{ else }}
+					<li class='user-list__item no--users'>There are no users</li>
+				{{ /if }}
+				</ul>
+			</div>
 		</div>
-
-		{{ #if usersCount }}
-			<h2>Users:</h2>
-			{{ #each users }}
-				{{ >user username=username _id=_id }}
-			{{ /each }}
-		{{ else }}
-			<h2>There are no users</h2>
-		{{ /if }}
 	</aside>
 </template>

@@ -1,3 +1,8 @@
 <template name="user">
-	<a class="username" href="/messages/@{{ username }}">{{ username }}</a>
+	<li class="user-list__item">		
+		<a href="/messages/@{{ username }}" class="user-list__link">
+			<img src="{{ avatar }}" alt="" class="user-list__avatar">
+			<span class="user-list__meta">{{ username }}</span>
+		</a>
+	</li>
 </template>

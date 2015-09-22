@@ -1,8 +1,9 @@
 /*aside*/.sidebar {
-	width: 25%;
-	float: left;
 	background: #F8F8FA;
+	position: relative;
 	padding-right: 16px;
+	flex: 1;
+	max-width: 220px;
 }
 
 /*h2*/.threads__title {

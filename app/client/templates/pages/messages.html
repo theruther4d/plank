@@ -1,0 +1,16 @@
+<template name="messages">
+	<div class="wrapper">
+		{{ > sidebar }}
+
+		<main>
+			{{ > header }}
+
+			<section class="messages">
+				{{ > yield }}
+			</section>
+
+			{{ > footer }}
+
+		</main>
+	</div>
+</template>

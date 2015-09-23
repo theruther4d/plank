@@ -3,15 +3,20 @@ Template.user.events({
 		e.preventDefault();
 
 		var	userId				= Meteor.userId(),
-			recipientUsername	= this.username,
-			recipientUserId		= Meteor.users.findOne( { username: recipientUsername } )._id,
-			existingThread		= Threads.find( { users: { $in: [ userId, recipientUserId ] } } ).count();
+			recipientUserId		= Meteor.users.findOne( { username: this.username } )._id,
+			existingThread		= Threads.find( { users: { $all: [ userId, recipientUserId ] } } ).count();
 
-		if( existingThread ) {
-			console.log( "thread already exists" );
-		} else {
+		// Create the thread:
+		if( !existingThread ) {
 			console.log( 'calling createThread' );
-			Meteor.call( 'createThread', { userId: userId, recipientUserId: recipientUserId } );
+
+			Meteor.call( 'createThread', { userId: userId, recipientUserId: recipientUserId }, function( err, result ) {
+				if( !err ) {
+					Meteor.call( 'updateThreadHistory', userId, result );
+				} else {
+					console.log( "error: ", err );
+				}
+			});
 		}
 
 

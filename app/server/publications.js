@@ -14,5 +14,5 @@ Meteor.users.allow({
 });
 
 Meteor.publish( 'threads', function() {
-	return Meteor.threads.find( { users: Meteor.userId() } );
+	return Threads.find( { users: this.userId } );
 });

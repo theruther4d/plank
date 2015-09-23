@@ -7,6 +7,8 @@ Meteor.publish( 'users', function() {
 	}});
 });
 
-Meteor.users.allow( function( userId, document, fieldNames, modifier ) {
-	
+Meteor.users.allow({ 
+	update: function( userId, document, fieldNames, modifier ) {
+		return true;
+	}
 });

@@ -32,7 +32,12 @@ Template.register.events({
 			email: email,
 			password: password
 		}, function( err ) {
-			Session.set( 'registerError', err.reason );
+			if( err ) {
+				console.log( 'create user error' );
+				return Session.set( 'registerError', err.reason );
+			}
+
+			var newUserId = Meteor.users.findOne( { username: username } )._id;
 
 			// Make avatar:
 			$.ajax({
@@ -41,9 +46,10 @@ Template.register.events({
 			})
 			.done( function( res ) {
 				var avatar = res.image_urls.mini;
+				console.log( 'avatar: ', avatar );
 
-				Meteor.users.update( { username: username }, { $set: { avatar: avatar } }, function( err ) {
-					console.log( err );
+				Meteor.users.update( newUserId, { $set: { avatar: avatar } }, function( err ) {
+					console.log( 'update error: ', err );
 				});
 			})
 			.fail( function( err ) {

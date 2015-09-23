@@ -1,0 +1,16 @@
+<template name="sidebar">
+	<aside class="sidebar">
+		{{> accounts }}
+		<div class="threads">
+			<h2 class="threads__title">Direct Messages:</h2>
+			{{ #if threadCount }}
+				{{ #each threads }}
+					{{ >thread recipientUserName=recipientUserName id=_id jointId=jointId }}
+				{{ /each }}
+			{{ else }}
+				<a href="#" class="new--thread">Send a direct message</a>
+			{{ /if }}					
+			{{ >userSearch }}
+		</div>
+	</aside>
+</template>

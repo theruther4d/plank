@@ -2,13 +2,13 @@
 	<aside class="sidebar">
 		{{> accounts }}
 		<div class="threads">
-			<h2 class="threads__title">Direct Messages:</h2>
+			<h2 class="threads__title">Direct Messages: <a class='open--users add-icon text--hidden' href="#" title="click to send a direct message">Send a direct message</a></h2>
 			{{ #if threadCount }}
 				{{ #each threads }}
 					{{ >thread recipientUserName=recipientUserName id=_id jointId=jointId }}
 				{{ /each }}
 			{{ else }}
-				<a href="#" class="new--thread">Send a direct message</a>
+				<a href="#" class="new--thread open--users">Send a direct message</a>
 			{{ /if }}					
 			{{ >userSearch }}
 		</div>

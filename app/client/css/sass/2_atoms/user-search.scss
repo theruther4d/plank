@@ -3,4 +3,9 @@
 	border: 1px solid blue;
 	left: 100%;
 	z-index: 1;
+	display: none;
+
+	.users--visible & {
+		display: block;
+	}
 }

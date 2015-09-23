@@ -8,6 +8,19 @@
 
 /*h2*/.threads__title {
 	padding-left: 16px;
+	position: relative;
+	min-height: 1.8rem;
+}
+
+/*a*/.add-icon {
+	position: absolute;
+	top: 0;
+	right: 8px;
+	bottom: 0;
+	width: 1.8rem;
+	height: 100%;
+	background: url('../images/add.svg') center center/100% auto no-repeat;
+	@extend .text--hidden;
 }
 
 /*h4 a*/.thread {

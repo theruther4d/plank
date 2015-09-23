@@ -17,7 +17,6 @@ Template.userSearch.helpers({
 		return Meteor.users.find( { _id: { $not: Meteor.userId() } } );
 	},
 	hasSearchResults: function() {
-		console.log( "calling hasSearchResults" );
 		return Session.get( 'search-query' ) !== undefined;
 	},
 	searchResultsCount: function() {

@@ -12,3 +12,7 @@ Meteor.users.allow({
 		return true;
 	}
 });
+
+Meteor.publish( 'threads', function() {
+	return Meteor.threads.find( { users: Meteor.userId() } );
+});

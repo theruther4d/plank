@@ -23,4 +23,6 @@ Router.route( '/', {
 
 Router.route( '/welcome', function() {
 	this.render( 'welcome' );
+}, {
+	name: 'welcome'
 });

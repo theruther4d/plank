@@ -2,7 +2,7 @@ Meteor.publish( 'users', function() {
 	return Meteor.users.find( {}, { fields: {
 		"username": true,
 		"_id": true,
-		"currentThread": true,
+		"threadHistory": true,
 		"avatar": true
 	}});
 });

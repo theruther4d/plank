@@ -1,5 +1,5 @@
 <template name="thread">	
-	<li class="thread-list__item">
+	<li class="thread-list__item {{ selectedThread _id }}">
 		<a href="/messages/@{{ getRecipientByUsers users }}" class="thread-list__link">{{ getRecipientByUsers users }}</a>
 		<a href="#" class="thread-list__close close-icon">Close this message</a>
 	</li>

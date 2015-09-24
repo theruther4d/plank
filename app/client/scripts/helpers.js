@@ -42,5 +42,15 @@ Template.thread.helpers({
 			recipientId	= users[index];
 
 		return Meteor.users.findOne( { _id: recipientId } ).username;
+	},
+	selectedThread: function( threadId ) {
+		var threadHistory 		= Meteor.user().threadHistory;
+
+		if( threadHistory !== undefined ) {
+			var threadHistoryLength	= threadHistory.length,
+				currentThread		= threadHistory[threadHistoryLength - 1];
+
+			return threadId == currentThread ? 'selected' : '';
+		}
 	}
 });

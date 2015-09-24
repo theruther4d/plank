@@ -29,10 +29,10 @@ Template.userSearch.helpers({
 
 Template.sidebar.helpers({
 	threadCount: function() {
-		return Threads.find().count();
+		return Threads.find( { hidden: { $ne: true } } ).count();
 	},
 	threads: function() {
-		return Threads.find();
+		return Threads.find( { hidden: { $ne: true } } );
 	}
 });
 

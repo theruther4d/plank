@@ -11,9 +11,20 @@ Template.user.events({
 		if( thread == undefined ) {
 			Meteor.call( 'createThread', { userId: userId, recipientUserId: recipientUserId }, function( err, result ) {
 				if( !err ) {
-					Meteor.call( 'updateThreadHistory', userId, result );
+					Meteor.call( 'updateThreadHistory', userId, result, function( err, result ) {
+						if( !err ) {
+							// Make sure this thread is visible:
+							Meteor.call( 'showThread', result );
+						}
+					});
 				}
 			});
+		} else {
+			// Update the history:
+			Meteor.call( 'updateThreadHistory', userId, thread._id );
+			
+			// Make sure this thread is visible:
+			Meteor.call( 'showThread', thread._id );
 		}
 
 		// Go to the thread:

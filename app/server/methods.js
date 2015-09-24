@@ -1,4 +1,7 @@
 Meteor.methods({
+	/*
+	** Creates a new thread:
+	*/
 	createThread: function( args ) {
 		var userId			= args.userId,
 			recipientUserId	= args.recipientUserId,
@@ -12,6 +15,10 @@ Meteor.methods({
 
 		return newThread;
 	},
+
+	/*
+	** Intelligently updates history of thread activity:
+	*/
 	updateThreadHistory: function( userId, threadId ) {
 		var existingThreadHistory = Meteor.users.findOne( userId ).threadHistory;
 		
@@ -53,5 +60,26 @@ Meteor.methods({
 				Meteor.users.update( { _id: userId }, { $push: { threadHistory: threadId } } );
 			}
 		}
+	},
+
+	/*
+	** Removes the last thread from history:
+	*/
+	removeThreadFromHistory: function( userId ) {
+		Meteor.users.update( { _id: userId }, { $pop: { threadHistory: 1 } } );
+	},
+
+	/*
+	** Hides the thread from the sidebar:
+	*/
+	hideThread: function( threadId ) {
+		Threads.update( threadId, { $set: { hidden: true } } );
+	},
+
+	/*
+	** Un-hides threads from the sidebar:
+	*/
+	showThread: function( threadId ) {
+		Threads.update( threadId, { $set: { hidden: false } } );
 	}
 });

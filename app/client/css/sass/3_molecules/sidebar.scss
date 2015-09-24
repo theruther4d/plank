@@ -1,3 +1,10 @@
+.text--hidden {
+	color: transparent;
+	font-size: 0;
+	line-height: 0;
+	overflow: hidden;
+}
+
 /*aside*/.sidebar {
 	background: #F8F8FA;
 	position: relative;
@@ -21,63 +28,4 @@
 	height: 100%;
 	background: url('../images/add.svg') center center/100% auto no-repeat;
 	@extend .text--hidden;
-}
-
-/*h4 a*/.thread {
-	position: relative;
-	padding-left: 16px;
-	display: block;
-	width: 100%;
-	border-radius: 0 4px 4px 0;
-	height: 2.4rem;
-	line-height: 2.4rem;
-
-	&:hover {
-		background: #FFFFFF;
-	}
-
-	&.selected {
-		background: #CAD1D9;
-		color: white;
-
-		&:hover {
-			background: #CAD1D9;
-		}
-	}
-
-	&:before {
-		content: '';
-		display: inline-block;
-		width: 9px;
-		height: 9px;
-		background: transparent;
-		border-radius: 50%;
-		margin-right: 10px;
-		color: #383F45;
-		opacity: 0.3;
-		border: 2px solid;
-		transition: color 0.25s ease, background-color 0.25s ease, opacity 0.25s ease;
-	}
-
-	&.state--online:before {
-		opacity: 1;
-		color: #93cc93;
-		background: #93cc93;
-	}
-}
-
-/*a*/.remove--thread {
-	position: absolute;
-	top: 0;
-	right: 8px;
-	bottom: 0;
-	width: 1.8rem;
-	height: 100%;
-	background: url('../images/close.svg') center center/100% auto no-repeat;
-	opacity: 0;
-	transition: opacity 0.15s ease;
-
-	/*a*/.thread:hover & {
-		opacity: 1;
-	}
 }

@@ -3,13 +3,15 @@
 		{{> accounts }}
 		<div class="threads">
 			<h2 class="threads__title">Direct Messages: <a class='open--users add-icon text--hidden' href="#" title="click to send a direct message">Send a direct message</a></h2>
+			<ul class="thread-list">
 			{{ #if threadCount }}
-				{{ #each threads }}
-					{{ >thread recipientUserName=recipientUserName id=_id jointId=jointId }}
+				{{ #each threads users=users }}
+					{{ >thread }}
 				{{ /each }}
 			{{ else }}
-				<a href="#" class="new--thread open--users">Send a direct message</a>
-			{{ /if }}					
+				<li class="thread-list__item"><a href="#" class="thread-list__link new--thread open--users">Send a direct message</a></li>
+			{{ /if }}		
+			</ul>			
 			{{ >userSearch }}
 		</div>
 	</aside>

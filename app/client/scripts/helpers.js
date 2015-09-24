@@ -26,3 +26,21 @@ Template.userSearch.helpers({
 	    return getSearchResults();
 	}
 });
+
+Template.sidebar.helpers({
+	threadCount: function() {
+		return Threads.find().count();
+	},
+	threads: function() {
+		return Threads.find();
+	}
+});
+
+Template.thread.helpers({
+	getRecipientByUsers: function( users ) {
+		var index		= users.indexOf( Meteor.userId() ) === 0 ? 1 : 0,
+			recipientId	= users[index];
+
+		return Meteor.users.findOne( { _id: recipientId } ).username;
+	}
+});

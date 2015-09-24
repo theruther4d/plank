@@ -4,24 +4,22 @@ Template.user.events({
 
 		var	userId				= Meteor.userId(),
 			recipientUserId		= Meteor.users.findOne( { username: this.username } )._id,
-			thread				= Threads.find( { users: { $all: [ userId, recipientUserId ] } } ).count();
-			hasThreadHistory	= thread ? typeof Threads.find( { users: { $all: [ userId, recipientUserId ] } } ).threadHistory !== undefined : 0;
+			thread				= Threads.findOne( { users: { $all: [ userId, recipientUserId ] } } );
 
-
-		// Create the thread:
-		if( !existingThread ) {
-			
-		// 	Meteor.call( 'createThread', { userId: userId, recipientUserId: recipientUserId }, function( err, result ) {
-		// 		if( !err ) {
-		// 			Meteor.call( 'updateThreadHistory', userId, result );
-		// 		} else {
-		// 			console.log( "error: ", err );
-		// 		}
-		// 	});
-		} else {
-		// 	Meteor.call( 'updateThreadHistory', userId,  );
+		// If this thread does NOT already
+		// exist, create it:
+		if( thread == undefined ) {
+			Meteor.call( 'createThread', { userId: userId, recipientUserId: recipientUserId }, function( err, result ) {
+				if( !err ) {
+					Meteor.call( 'updateThreadHistory', userId, result );
+				}
+			});
 		}
 
+		// Go to the thread:
+		Router.go( '/messages/@' + this.username );
 
+		// Close the user-search:
+		document.getElementsByClassName( 'sidebar' )[0].classList.remove( 'users--visible' );
 	}
 })

@@ -16,3 +16,7 @@ Meteor.users.allow({
 Meteor.publish( 'threads', function() {
 	return Threads.find( { users: this.userId } );
 });
+
+Meteor.publish( 'userPresence', function() {
+  return UserPresences.find();
+});

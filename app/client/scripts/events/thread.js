@@ -1,5 +1,6 @@
 Template.thread.events({
 	'click .thread-list__link': function() {
+		console.log( this );
 		Meteor.call( 'updateThreadHistory', Meteor.userId(), this._id );
 	},
 	'click .thread-list__close': function( e ) {

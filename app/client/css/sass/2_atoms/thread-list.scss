@@ -27,7 +27,7 @@
 		}
 	}
 
-	&:before {
+	&:not(.no--indicator):before {
 		content: '';
 		display: inline-block;
 		width: 9px;

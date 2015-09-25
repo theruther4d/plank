@@ -58,5 +58,18 @@ Template.thread.helpers({
 
 			return threadId == currentThread ? 'selected' : '';
 		}
+	},
+	isOnline: function() {
+		var index		= this.users.indexOf( Meteor.userId() ) === 0 ? 1 : 0,
+			otherUserId	= this.users[index],
+			userStatus	= UserPresences.findOne( { userId: otherUserId } );
+
+		console.log( 'index: ', index );
+		console.log( 'otherUserId: ', otherUserId );
+		console.log( 'userStatus: ', userStatus );
+		
+		if( userStatus !== undefined ) {
+			return 'state--' + userStatus.state;
+		}
 	}
 });

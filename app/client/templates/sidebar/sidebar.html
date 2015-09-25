@@ -9,11 +9,11 @@
 					{{ >thread }}
 				{{ /each }}
 			{{ else }}
-				<li class="thread-list__item"><a href="#" class="thread-list__link new--thread open--users">Send a direct message</a></li>
+				<li class="thread-list__item no--indicator"><a href="#" class="thread-list__link new--thread open--users">Send a direct message</a></li>
 			{{ /if }}
 
 			{{ #if remainingThreads }}
-				<li class="thread-list__item"><a href="#" class="thread-list__link new--thread open--users">+ {{ remainingThreads }} more</a></li>
+				<li class="thread-list__item no--indicator"><a href="#" class="thread-list__link new--thread open--users">+ {{ remainingThreads }} more</a></li>
 			{{ /if }}
 			</ul>			
 			{{ >userSearch }}

@@ -33,6 +33,12 @@ Template.sidebar.helpers({
 	},
 	threads: function() {
 		return Threads.find( { hidden: { $ne: true } } );
+	},
+	remainingThreads: function() {
+		var totalNumThreads		= Threads.find().count(),
+			totalCurrThreads	= Meteor.user().threadHistory.length;
+
+		return totalNumThreads !== totalCurrThreads && totalCurrThreads > 0 ? totalNumThreads - totalCurrThreads : 0;
 	}
 });
 

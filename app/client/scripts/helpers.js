@@ -36,7 +36,7 @@ Template.sidebar.helpers({
 	},
 	remainingThreads: function() {
 		var totalNumThreads		= Threads.find().count(),
-			totalCurrThreads	= Meteor.user().threadHistory.length;
+			totalCurrThreads	= Meteor.user().threadHistory ? Meteor.user().threadHistory.length : 0;
 
 		return totalNumThreads !== totalCurrThreads && totalCurrThreads > 0 ? totalNumThreads - totalCurrThreads : 0;
 	}
@@ -63,10 +63,6 @@ Template.thread.helpers({
 		var index		= this.users.indexOf( Meteor.userId() ) === 0 ? 1 : 0,
 			otherUserId	= this.users[index],
 			userStatus	= UserPresences.findOne( { userId: otherUserId } );
-
-		console.log( 'index: ', index );
-		console.log( 'otherUserId: ', otherUserId );
-		console.log( 'userStatus: ', userStatus );
 		
 		if( userStatus !== undefined ) {
 			return 'state--' + userStatus.state;

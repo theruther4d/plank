@@ -3,7 +3,14 @@ var textCount		= 0,
 		[ "friend", [ "matey", "hearty", "buckaneer", "seadog" ] ],
 		[ "hello", [ "ahoy", "avast" ] ],
 	],
-	queries			= [];
+	before			= "<span class='match'>",
+	after			= "</span>",
+	bLength			= before.length,
+	aLength			= after.length,
+	queries			= [],
+	pieces			= [],
+	matchIndex		= 0,
+	matchNum		= 0;
 
 rawQueries.forEach( function( ctx, idx ) {
 	var	tempQ	= [
@@ -17,12 +24,7 @@ rawQueries.forEach( function( ctx, idx ) {
 Template.footer.events( {
 	'keyup #message-input': function( e ) {
 		var resultEl		= document.getElementById( 'result' ),
-			inputVal		= document.getElementById( 'message-input' ).value,
-	    	allMatches		= [],
-	    	formattedVal	= [],
-	    	output;
-
-
+			inputVal		= document.getElementById( 'message-input' ).value;
 
 		if( !!inputVal ) {
 			var charCode = ( typeof e.which == "number" ) ? e.which : e.keyCode;
@@ -37,16 +39,50 @@ Template.footer.events( {
 				textCount++;
 			}
 
-			formattedVal[textCount] = inputVal;
+			pieces[matchNum] = inputVal.slice( matchIndex );
+
+			// console.log( "matchIndex: ", matchIndex );
+			// console.log( "portion: ", inputVal.slice( matchIndex ) );
+
+			// formattedVal[textCount] = inputVal;
 
 	    	queries.forEach( function( ctx, idx ) {
-	    		var randNum = Math.floor(Math.random() * ( ctx[1].length - 0 ) ) + 0;
+	    		var match = ctx[2].exec( pieces[matchNum] );
+    			
+    			if( match !== null ) {
+    				console.log( match );
+		    		var randNum = Math.floor(Math.random() * ( ctx[1].length - 0 ) ) + 0,
+		    			result = pieces[matchNum].replace( ctx[2], before + ctx[1][randNum] + after );
 
-	    		tempVal = formattedVal.join('').replace( ctx[2], "<span class='match'>" + ctx[1][randNum] + "</span>" );
-	    		formattedVal = [ tempVal ];
+		    		pieces[matchNum] = result;
+		    		matchIndex = match.index + match[0].length;
+		    		matchNum++;
+    			}
+
+	    		// if( ctx[2].test( inputVal ) ) {
+	    			// console.log( ctx[2] );
+	    			// console.log( inputVal );
+    	// 		if( match !== null ) {
+    	// 			var pLength		= pieces.length,
+    	// 				joint		= pLength ? pieces[pLength - 1].join( '' ),
+    	// 				beforeMatch = inputVal.slice( 0, match.index );
+
+					// console.log( joint );
+
+    	// 			pieces.push( beforeMatch );
+
+    	// 			console.log( beforeMatch );
+    	// 		}
+	    		// }
+
+	    		// tempVal = formattedVal.join('').replace( ctx[2], "<span class='match'>" + ctx[1][randNum] + "</span>" );
+	    		// formattedVal = [ tempVal ];
 	    	});
 
-	    	resultEl.innerHTML = formattedVal;
+	    	console.log( pieces );
+
+	    	// resultEl.innerHTML = formattedVal;
+	    	resultEl.innerHTML = pieces.join[''];
 		} else {
 			textCount = 0;
 		}

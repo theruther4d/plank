@@ -41,48 +41,22 @@ Template.footer.events( {
 
 			pieces[matchNum] = inputVal.slice( matchIndex );
 
-			// console.log( "matchIndex: ", matchIndex );
-			// console.log( "portion: ", inputVal.slice( matchIndex ) );
-
-			// formattedVal[textCount] = inputVal;
-
 	    	queries.forEach( function( ctx, idx ) {
 	    		var match = ctx[2].exec( pieces[matchNum] );
     			
     			if( match !== null ) {
-    				console.log( match );
 		    		var randNum = Math.floor(Math.random() * ( ctx[1].length - 0 ) ) + 0,
 		    			result = pieces[matchNum].replace( ctx[2], before + ctx[1][randNum] + after );
 
 		    		pieces[matchNum] = result;
-		    		matchIndex = match.index + match[0].length;
 		    		matchNum++;
+		    		matchIndex = inputVal.length;
     			}
-
-	    		// if( ctx[2].test( inputVal ) ) {
-	    			// console.log( ctx[2] );
-	    			// console.log( inputVal );
-    	// 		if( match !== null ) {
-    	// 			var pLength		= pieces.length,
-    	// 				joint		= pLength ? pieces[pLength - 1].join( '' ),
-    	// 				beforeMatch = inputVal.slice( 0, match.index );
-
-					// console.log( joint );
-
-    	// 			pieces.push( beforeMatch );
-
-    	// 			console.log( beforeMatch );
-    	// 		}
-	    		// }
-
-	    		// tempVal = formattedVal.join('').replace( ctx[2], "<span class='match'>" + ctx[1][randNum] + "</span>" );
-	    		// formattedVal = [ tempVal ];
 	    	});
 
 	    	console.log( pieces );
 
-	    	// resultEl.innerHTML = formattedVal;
-	    	resultEl.innerHTML = pieces.join[''];
+	    	resultEl.innerHTML = pieces.join( '' );
 		} else {
 			textCount = 0;
 		}

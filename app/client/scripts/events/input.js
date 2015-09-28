@@ -5,8 +5,6 @@ var textCount		= 0,
 	],
 	before			= "<span class='match'>",
 	after			= "</span>",
-	bLength			= before.length,
-	aLength			= after.length,
 	queries			= [],
 	pieces			= [],
 	matchIndex		= 0,
@@ -29,7 +27,7 @@ Template.footer.events( {
 		if( !!inputVal ) {
 			var charCode = ( typeof e.which == "number" ) ? e.which : e.keyCode;
 
-			if( charCode == 8 ) {
+			/*if( charCode == 8 ) {
 				textCount--;
 			} else if( charCode == 13 ) {
 				e.stopPropagation();
@@ -37,7 +35,9 @@ Template.footer.events( {
 				return false;
 			} else {
 				textCount++;
-			}
+			}*/
+
+			textCount = inputVal.length;
 
 			pieces[matchNum] = inputVal.slice( matchIndex );
 
@@ -54,7 +54,8 @@ Template.footer.events( {
     			}
 	    	});
 
-	    	console.log( pieces );
+	    	// console.log( pieces );
+	    	console.log( textCount );
 
 	    	resultEl.innerHTML = pieces.join( '' );
 		} else {

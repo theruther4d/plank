@@ -69,3 +69,10 @@ Template.thread.helpers({
 		}
 	}
 });
+
+Template.welcome.helpers({
+	messages: function() {
+		console.log( Threads.findOne( Meteor.user().currentThread[ Meteor.user().currentThread.length - 1] ).messages );
+		// return Threads.findOne( Meteor.user().currentThread[ Meteor.user().currentThread.length - 1] ).messages;
+	}
+});

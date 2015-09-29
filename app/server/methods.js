@@ -81,5 +81,14 @@ Meteor.methods({
 	*/
 	showThread: function( threadId ) {
 		Threads.update( threadId, { $set: { hidden: false } } );
+	},
+
+	/*
+	** Creates Message inside of thread:
+	*/
+	createMessage: function( threadId, messageObject ) {
+		console.log( 'threadId: ', threadId );
+		console.log( 'messageObject: ', messageObject );
+		Threads.update( threadId, { $push: { messages: messageObject } } );
 	}
 });

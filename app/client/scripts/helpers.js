@@ -85,6 +85,14 @@ Template.bozo.helpers({
 			currentThread		= threadHistoryLength > 0 ? threadHistory[threadHistoryLength - 1] : threadHistory[0];
 		return Threads.findOne( currentThread ).messages;
 	},
+	formatTime: function( timeString ) {
+		var options = {
+			hour: "2-digit",
+			minute: "2-digit"
+		};
+
+		return timeString.toLocaleTimeString( navigator.language, options );
+	},
 	getAvatarByUserId: function( id ) {
 		return Meteor.users.findOne( { _id: id } ).avatar;
 	},

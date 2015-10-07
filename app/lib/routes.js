@@ -26,3 +26,7 @@ Router.route( '/welcome', function() {
 }, {
 	name: 'welcome'
 });
+
+Router.route( '/messages/@:_username', function() {
+	this.render( 'bozo' );
+});

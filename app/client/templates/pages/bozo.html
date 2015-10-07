@@ -1,0 +1,12 @@
+<template name="bozo">	
+	<ul>
+	{{ #each messages }}
+		<li>
+			<img src="{{ getAvatarByUserId sender }}" />
+			{{ getUsernameById sender }}
+			{{ time }}
+			{{ message }}
+		</li>
+	{{ /each}}
+	</ul>
+</template>

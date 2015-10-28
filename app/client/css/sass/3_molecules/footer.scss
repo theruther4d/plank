@@ -1,5 +1,14 @@
 footer {
-	width: 100%;
-	clear: both;
-	border: 1px solid black;
+	// position: absolute;
+	// bottom: 0;
+	// right: 0;
+	// left: 0;
+	// width: 100%;
+	// border: 1px solid red;
+	// height: 40px;
+	// flex: 1;
+	height: 40px;
+	background: blue;
+	flex: 1;
+	flex-grow: 0;
 }

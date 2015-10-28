@@ -1,4 +1,4 @@
-Template.bozo.events({
+Template.messageBox.events({
 	'click li': function( e ) {
 		e.preventDefault();
 

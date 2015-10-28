@@ -70,21 +70,16 @@ Template.thread.helpers({
 	}
 });
 
-Template.welcome.helpers({
+Template.messageBox.helpers({
 	messages: function() {
-		// console.log( Threads.findOne( Meteor.user().currentThread[ Meteor.user().currentThread.length - 1] ).messages );
-		// return Threads.findOne( Meteor.user().currentThread[ Meteor.user().currentThread.length - 1] ).messages;
-	}
-});
-
-Template.bozo.helpers({
-	messages: function() {
-		// console.log( Meteor.user().threadHistory );
 		var threadHistory		= Meteor.user().threadHistory,
 			threadHistoryLength	= threadHistory.length,
 			currentThread		= threadHistoryLength > 0 ? threadHistory[threadHistoryLength - 1] : threadHistory[0];
 		return Threads.findOne( currentThread ).messages;
-	},
+	}
+});
+
+Template.message.helpers({	
 	formatTime: function( timeString ) {
 		var options = {
 			hour: "2-digit",
@@ -99,4 +94,4 @@ Template.bozo.helpers({
 	getUsernameById: function( id ) {
 		return Meteor.users.findOne( { _id: id } ).username;
 	}
-})
+});

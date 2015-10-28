@@ -3,3 +3,16 @@
 // 	float: left;
 // 	border: 1px solid blue;
 // }
+
+.message-area {
+	background: rgba(255, 0, 0, 0.4);
+	flex-grow: 1;
+	overflow: hidden;
+	overflow-y: scroll;
+	// display: flex;
+	// flex-direction: column;
+}
+
+/*ul*/.messages {
+	// flex-grow: 1;
+}

@@ -1,0 +1,12 @@
+<template name="message">
+	<li class="message">
+		<img src="{{ getAvatarByUserId sender }}" class="message__avatar" />
+		<div class="message__meta">
+			<div class="message__user-meta">
+				{{ getUsernameById sender }}
+				{{ formatTime time }}
+			</div>
+			{{ message }}
+		</div>
+	</li>
+</template>

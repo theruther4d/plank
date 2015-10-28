@@ -28,5 +28,5 @@ Router.route( '/welcome', function() {
 });
 
 Router.route( '/messages/@:_username', function() {
-	this.render( 'bozo' );
+	this.render( 'messageBox' );
 });

@@ -16,7 +16,21 @@ Router.route( '/', {
 	},
 	action: function() {
 		if( this.ready() ) {
-			Router.go( '/welcome' );
+			var userId = Meteor.userId();
+
+			if( userId ) {
+				var userThreadHistory = Meteor.users.findOne( { _id: userId } ).threadHistory;
+
+				if( userThreadHistory.length ) {
+					var thread = Threads.findOne( { _id: userThreadHistory[userThreadHistory.length - 1 ] } );
+					var otherUserId = thread.users[0] == userId ? thread.users[1] : thread.users[0];
+					var otherUserName = Meteor.users.findOne( { _id: otherUserId } ).username;
+
+					Router.go( '/messages/@' + otherUserName );
+				}
+			} else {
+				Router.go( '/welcome' );
+			}
 		}
 	}
 });

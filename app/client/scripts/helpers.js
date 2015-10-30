@@ -72,10 +72,18 @@ Template.thread.helpers({
 
 Template.messageBox.helpers({
 	messages: function() {
-		var threadHistory		= Meteor.user().threadHistory,
-			threadHistoryLength	= threadHistory.length,
-			currentThread		= threadHistoryLength > 0 ? threadHistory[threadHistoryLength - 1] : threadHistory[0];
-		return Threads.findOne( currentThread ).messages;
+		if( !Meteor.user() ) {
+			return;
+		}
+
+		var threadHistory		= Meteor.user().threadHistory;
+
+		if( typeof threadHistory !== typeof undefined ) {
+			var threadHistoryLength	= threadHistory.length,
+				currentThread		= threadHistoryLength > 0 ? threadHistory[threadHistoryLength - 1] : threadHistory[0];
+
+			return Threads.findOne( currentThread ).messages;
+		}
 	}
 });
 
@@ -93,5 +101,29 @@ Template.message.helpers({
 	},
 	getUsernameById: function( id ) {
 		return Meteor.users.findOne( { _id: id } ).username;
+	}
+});
+
+Template.header.helpers({
+	threadRecipient: function() {
+		if( !Meteor.user() ) {
+			return;
+		}
+
+		var threadHistory		= Meteor.user().threadHistory;
+
+		if( typeof threadHistory !== typeof undefined ) {
+			var threadHistoryLength	= threadHistory.length,
+				currentThread		= threadHistoryLength > 0 ? threadHistory[threadHistoryLength - 1] : threadHistory[0];
+
+			function excludeCurrentUser ( val ) {
+				return val !== Meteor.userId();
+			}
+
+			var otherUserID		= Threads.findOne( currentThread ).users.filter( excludeCurrentUser )[0],
+				otherUserName	= Meteor.users.findOne( { _id: otherUserID } ).username;
+
+			return otherUserName;
+		}
 	}
 });

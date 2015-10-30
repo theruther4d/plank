@@ -1,9 +1,10 @@
 .user-search {
 	position: absolute;
-	border: 1px solid blue;
 	left: 100%;
 	z-index: 1;
 	display: none;
+	background: #FFFFFF;
+	box-shadow: 0 10px 16px -2px rgba(0, 0, 0, 0.4);
 
 	.users--visible & {
 		display: block;

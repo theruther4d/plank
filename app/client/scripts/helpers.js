@@ -29,10 +29,10 @@ Template.userSearch.helpers({
 
 Template.sidebar.helpers({
 	threadCount: function() {
-		return Threads.find( { hidden: { $ne: true } } ).count();
+		return Threads.find( { hidden: { $nin: [Meteor.userId()] } } ).count();
 	},
 	threads: function() {
-		return Threads.find( { hidden: { $ne: true } } );
+		return Threads.find( { hidden: { $nin: [Meteor.userId()] } } );
 	},
 	remainingThreads: function() {
 		var totalNumThreads		= Threads.find().count(),

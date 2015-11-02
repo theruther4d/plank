@@ -72,8 +72,19 @@ Meteor.methods({
 	/*
 	** Hides the thread from the sidebar:
 	*/
-	hideThread: function( threadId ) {
-		Threads.update( threadId, { $set: { hidden: true } } );
+	hideThread: function( threadId, userID ) {
+		var threadHasHiddenArray = typeof Threads.find( { _id: threadId } ).hidden !== undefined;
+
+		console.log( 'already has isHidden array: ', threadHasHiddenArray );
+
+		// If thread already has a hidden preference, push our userID to the end of the array:
+		if( threadHasHiddenArray ) {
+			Threads.update( threadId, { $push: { hidden: userID } } );
+		}
+		// Otherwise, $set the array for the first time:
+		else {
+			Threads.update( threadId, { $set: { hidden: userID } } );
+		}
 	},
 
 	/*

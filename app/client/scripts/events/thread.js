@@ -16,7 +16,7 @@ Template.thread.events({
 		}
 
 		// Hide the thread:
-		Meteor.call( 'hideThread', this._id );
+		Meteor.call( 'hideThread', this._id, Meteor.userId() );
 
 		// Remove it from the user's history:
 		Meteor.call( 'removeThreadFromHistory', Meteor.userId() );
